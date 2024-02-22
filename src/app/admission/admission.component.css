@@ -1,0 +1,18 @@
+
+      :host {
+        text-align: center;
+        width: 100%;
+        padding: 20px;
+        background: #f8f8fe;
+      }
+      nz-layout {
+        margin-bottom: 48px;
+      }
+
+      nz-layout nz-layout,
+      nz-layout:last-child {
+        margin: 0;
+        width: 100%;
+        background: transparent;
+      }
+    

@@ -2,8 +2,18 @@
   <!-- CARD 1-->
  <div class="general-info-container">
     <nz-card [nzTitle]="CardTitle" class="info-card-container">
-      <ng-template #CardTitle>
-        <h3 style="text-align: left;">Informations générales</h3>
+      <ng-template #CardTitle >
+        <div style="display: flex; width: 100%; justify-content: space-between; align-items: center;">
+          <h3 style="text-align: left; margin: 0;">Informations générales</h3>
+          <div style="display: flex; align-items: center;">
+              <span style="margin-right: 5px;">RDV N°</span>
+              <nz-alert nzType="success" [nzMessage]="Message" style="margin: 0;">
+                <ng-template #Message >
+                  <h5 style=" margin: 0;border-radius: 4px;">Ouverte</h5>
+                </ng-template>
+              </nz-alert>
+          </div>
+      </div>      
       </ng-template>
       <div nz-row > 
         <div nz-col nzSpan="4"  >
@@ -32,8 +42,8 @@
         </div>
         <div nz-col nzSpan="8">
           <div class="label-container">
-            <div class="text-justify"><span>21/02/2024 1011</span></div>
-            <div class="text-justify"><span>21/02/2024 1011</span></div>
+            <div class="text-justify"><span>21/02/2024 10:11</span></div>
+            <div class="text-justify"><span>21/02/2024 10:11</span></div>
             <div class="text-justify"><span>Dermatologie </span></div>
             <div class="text-justify"><span>Bezzaz PUser</span></div>
           </div>
@@ -115,8 +125,22 @@
    <!-- CARD 4-->
    <div class="general-info-container">
     <nz-card [nzTitle]="CardTitle4" class="info-card-container">
-      <ng-template #CardTitle4>
-        <h3 style="text-align:left;">Débiteur</h3>
+      <ng-template #CardTitle4 >
+        <div style="display: flex; width: 100%; justify-content: space-between; align-items: center;">
+          <h3 style="text-align: left; margin: 0;">Débiteur</h3>
+          <div style="display: flex; align-items: center;">
+            <nz-alert nzType="error" [nzMessage]="Message" style="margin-right: 10px;">
+              <ng-template #Message >
+                <h5 style=" margin: 0;">Règlement part patient</h5>
+              </ng-template>
+            </nz-alert>
+              <nz-alert nzType="error" [nzMessage]="Message2" style="margin: 0;">
+                <ng-template #Message2 >
+                  <h5 style=" margin: 0;">Règlement part organisme</h5>
+                </ng-template>
+              </nz-alert>
+          </div>
+      </div>      
       </ng-template>
       <div nz-row > 
         <div nz-col nzSpan="4"  >

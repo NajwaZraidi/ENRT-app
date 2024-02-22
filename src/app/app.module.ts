@@ -19,6 +19,7 @@ import { AdmissionHeaderComponent } from './admission/admission-header/admission
 import { MouvementsComponent} from './admission/admission-body/mouvements/mouvements.component';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzGridModule } from 'ng-zorro-antd/grid';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +43,8 @@ import { NzGridModule } from 'ng-zorro-antd/grid';
     NzDropDownModule,
     NzAlertModule,
     NzTableModule,
-    NzGridModule
+    NzGridModule,
+    BrowserAnimationsModule
   ],
   providers: [
     provideClientHydration()

@@ -1,6 +1,14 @@
 :host {
   width: 100%;
 }
+nz-card{
+  border-radius: 6px;
+  border-color: rgb(220, 220, 220);
+}
+
+.info-card-container{
+  margin-bottom: 10px;
+}
 
 .label-container {
   padding: 10px;
@@ -19,6 +27,7 @@ nz-row {
 .text-justify {
   text-align: justify;
   text-justify: inter-word;
+  font-size: 16px;
 }
 
 .label-container div {

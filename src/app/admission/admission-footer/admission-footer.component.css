@@ -1,7 +1,8 @@
 
-      p {
-        margin: 0;
-      }
+   nz-card{
+  border-radius: 6px;
+  border-color: rgb(220, 220, 220);
+   }
       .btn {
         border-radius: 3px;
         font-size: 13px;

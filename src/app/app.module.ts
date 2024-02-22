@@ -20,6 +20,8 @@ import { MouvementsComponent} from './admission/admission-body/mouvements/mouvem
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,7 +46,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NzAlertModule,
     NzTableModule,
     NzGridModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule
   ],
   providers: [
     provideClientHydration()

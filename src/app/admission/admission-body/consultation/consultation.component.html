@@ -7,7 +7,7 @@
           <h3 style="text-align: left; margin: 0;">Informations générales</h3>
           <div style="display: flex; align-items: center;">
               <span style="margin-right: 5px;">RDV N°</span>
-              <nz-alert nzType="success" [nzMessage]="Message" style="margin: 0;">
+              <nz-alert class="ourOwnClass" nzType="success" [nzMessage]="Message" style="margin: 0;">
                 <ng-template #Message >
                   <h5 style=" margin: 0;border-radius: 4px;">Ouverte</h5>
                 </ng-template>
@@ -129,12 +129,12 @@
         <div style="display: flex; width: 100%; justify-content: space-between; align-items: center;">
           <h3 style="text-align: left; margin: 0;">Débiteur</h3>
           <div style="display: flex; align-items: center;">
-            <nz-alert nzType="error" [nzMessage]="Message" style="margin-right: 10px;">
+            <nz-alert class="ourOwnClass" nzType="error"  [nzMessage]="Message" style="margin-right: 10px;">
               <ng-template #Message >
                 <h5 style=" margin: 0;">Règlement part patient</h5>
               </ng-template>
             </nz-alert>
-              <nz-alert nzType="error" [nzMessage]="Message2" style="margin: 0;">
+              <nz-alert class="ourOwnClass" nzType="error"  [nzMessage]="Message2" style="margin: 0;">
                 <ng-template #Message2 >
                   <h5 style=" margin: 0;">Règlement part organisme</h5>
                 </ng-template>

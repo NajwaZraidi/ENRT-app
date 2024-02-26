@@ -7,7 +7,7 @@ import { NzAlertModule } from 'ng-zorro-antd/alert';
 // import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 // import { NzBackTopModule } from 'ng-zorro-antd/back-top';
 // import { NzBadgeModule } from 'ng-zorro-antd/badge';
-// import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
+import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
 // import { NzButtonModule } from 'ng-zorro-antd/button';
 // import { NzCalendarModule } from 'ng-zorro-antd/calendar';
 import { NzCardModule } from 'ng-zorro-antd/card';
@@ -25,12 +25,12 @@ import { NzCardModule } from 'ng-zorro-antd/card';
 // import { NzDrawerModule } from 'ng-zorro-antd/drawer';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 // import { NzEmptyModule } from 'ng-zorro-antd/empty';
-// import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 // import { NzI18nModule } from 'ng-zorro-antd/i18n';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 // import { NzImageModule } from 'ng-zorro-antd/image';
-// import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzInputModule } from 'ng-zorro-antd/input';
 // import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 // import { NzListModule } from 'ng-zorro-antd/list';
@@ -55,7 +55,7 @@ import { NzMenuModule } from 'ng-zorro-antd/menu';
 // import { NzSpinModule } from 'ng-zorro-antd/spin';
 // import { NzStatisticModule } from 'ng-zorro-antd/statistic';
 // import { NzStepsModule } from 'ng-zorro-antd/steps';
-// import { NzSwitchModule } from 'ng-zorro-antd/switch';
+import { NzSwitchModule } from 'ng-zorro-antd/switch';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
 // import { NzTagModule } from 'ng-zorro-antd/tag';
@@ -87,6 +87,10 @@ import { NzTabsModule } from 'ng-zorro-antd/tabs';
     NzAlertModule,
     NzTableModule,
     NzGridModule,
+    NzBreadCrumbModule,
+    NzInputModule,
+    NzSwitchModule,
+    NzFormModule
   ]
 })
 export class NgZorroAntdModule { }

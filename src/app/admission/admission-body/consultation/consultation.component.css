@@ -9,7 +9,7 @@ nz-card{
  .info-card-container{
   margin-bottom: 10px;
 }
-::ng-deep .ourOwnClass .ant-alert-error{
+::ng-deep .ourOwnClass .ant-alert-error {
   border-radius: 20px;
   height: 30px;
 }

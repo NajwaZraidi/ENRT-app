@@ -1,0 +1,39 @@
+
+    <nz-table
+      #rowSelectionTable
+      nzShowSizeChanger
+      [nzData]="listOfData"
+      (nzCurrentPageDataChange)="onCurrentPageDataChange($event)"
+    >
+      <thead>
+        <tr>
+          <th
+            [(nzChecked)]="checked"
+            [nzIndeterminate]="indeterminate"
+            (nzCheckedChange)="onAllChecked($event)"
+          ></th>
+          <!-- <th
+            [(nzChecked)]="checked"
+          ></th> -->
+          <th>Code</th>
+          <th>Description</th>
+          <th>Actif</th>
+          <th>Libellé</th>
+          <th>Ordre</th>
+          <th>HI7</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of rowSelectionTable.data">
+          <td [nzChecked]="setOfCheckedId.has(data.id)" (nzCheckedChange)="onItemChecked(data.id, $event)"></td>
+          <!-- <td [nzChecked]="setOfCheckedId.has(data.id)" (click)="DeleteCategorie(data.id)"></td> -->
+          <td>{{ data.code }}</td>
+          <td>{{ data.description }}</td>
+          <td>{{ data.actif ? 'Oui' :'Non'}}</td>
+          <td>{{ data.libelle }}</td>
+          <td>{{ data.ordre }}</td>
+          <td>{{ data.hi7 }}</td>
+        </tr>
+      </tbody>
+    </nz-table>
+  

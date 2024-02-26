@@ -13,6 +13,10 @@ import { AdmissionHeaderComponent } from './admission/admission-header/admission
 import { MouvementsComponent} from './admission/admission-body/mouvements/mouvements.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { Referentiel2Component } from './referentiel2/referentiel2.component';
+import { Referentiel2TableComponent } from './referentiel2/referentiel2-table/referentiel2-table.component';
+import { AjouterComponent } from './referentiel2/ajouter/ajouter.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,7 +26,10 @@ import { HttpClientModule } from '@angular/common/http';
     AdmissionFooterComponent,
     AdmissionBodyComponent,
     ConsultationComponent,
-    MouvementsComponent
+    MouvementsComponent,
+    Referentiel2Component,
+    Referentiel2TableComponent,
+    AjouterComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +38,8 @@ import { HttpClientModule } from '@angular/common/http';
     FontAwesomeModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    NgZorroAntdModule
+    NgZorroAntdModule,
+    ReactiveFormsModule
   ],
   providers: [
     provideClientHydration()

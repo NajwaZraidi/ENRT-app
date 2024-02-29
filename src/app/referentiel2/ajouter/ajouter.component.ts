@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { faReply} from '@fortawesome/free-solid-svg-icons'
 import { faFloppyDisk,faRotateLeft} from '@fortawesome/free-solid-svg-icons';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CategorieService } from '../../services/categorie.service';
 import { Router} from '@angular/router';
 import Swal from "sweetalert2";
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-ajouter',
@@ -12,21 +13,23 @@ import Swal from "sweetalert2";
   styleUrls: ['./ajouter.component.css']
 })
 export class AjouterComponent {
+  DataCategorie:any;
   faReply =faReply;
   faFloppyDisk =faFloppyDisk;
   faRotateLeft=faRotateLeft;
   formulaire: FormGroup;
 
-  constructor(private formBuilder: FormBuilder,private categorieService:CategorieService,private router :Router) {
+  constructor(private formBuilder: FormBuilder,private categorieService:CategorieService,private router :Router,private route: ActivatedRoute) {
     this.formulaire = this.formBuilder.group({
-      code: [''],
-      description: [''],
-      actif: [false],
-      libelle: [''],
-      ordre: [''],
-      hi7: ['']
+      code: ['',Validators.required],
+      description: ['',Validators.required],
+      actif: [false,Validators.required],
+      libelle: ['',Validators.required],
+      ordre: ['',Validators.required],
+      hi7: ['',Validators.required]
     });
   }
+
 
   onFormSubmit(){
     if(this.formulaire.valid){
@@ -80,4 +83,17 @@ export class AjouterComponent {
     this.formulaire.controls['hi7'].setValue('');
   }
 
+  GetCategorie(id:string){
+    this.categorieService.GetCategorieByID(id).subscribe({
+   
+     next:(res)=>{
+       console.log(res);
+       this.DataCategorie=res
+     },
+     error:(err)=>{
+       console.log(err);
+     }
+     
+    })
+   }
 }

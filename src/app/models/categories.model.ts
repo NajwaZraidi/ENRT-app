@@ -1,5 +1,5 @@
 export interface Categorie {
-  id: number,
+  id: string,
   code :string,
   description :string,
   actif: boolean,

@@ -1,52 +1,29 @@
 import { Component, OnInit } from '@angular/core';
 import { CategorieService } from '../../services/categorie.service';
 import { Categorie } from '../../models/categories.model';
-
-// interface ItemData {
-//   id: number;
-//   name: string;
-//   age: number;
-//   address: string;
-// }
+import { faTrash,faPenToSquare } from '@fortawesome/free-solid-svg-icons'
+import Swal from "sweetalert2";
+import { Router } from '@angular/router';
 
 
 @Component({
   selector: 'app-referentiel2-table',
-  templateUrl: './referentiel2-table.component.html'
+  templateUrl: './referentiel2-table.component.html',
+  styleUrls: ['./referentiel2-table.component.css']
 })
 export class Referentiel2TableComponent implements OnInit {
+  faTrash=faTrash;
+  faPenToSquare=faPenToSquare;
+  constructor(private categorieService:CategorieService,private router :Router){}
 
-  constructor(private categorieService:CategorieService){}
-
-  // listOfSelection = [
-  //   {
-  //     text: 'Select All Row',
-  //     onSelect: () => {
-  //       this.onAllChecked(true);
-  //     }
-  //   },
-  //   {
-  //     text: 'Select Odd Row',
-  //     onSelect: () => {
-  //       this.listOfCurrentPageData.forEach((data, index) => this.updateCheckedSet(data.id, index % 2 !== 0));
-  //       this.refreshCheckedStatus();
-  //     }
-  //   },
-  //   {
-  //     text: 'Select Even Row',
-  //     onSelect: () => {
-  //       this.listOfCurrentPageData.forEach((data, index) => this.updateCheckedSet(data.id, index % 2 === 0));
-  //       this.refreshCheckedStatus();
-  //     }
-  //   }
-  // ];
+ 
   checked = false;
   indeterminate = false;
   listOfCurrentPageData: readonly Categorie[] = [];
   listOfData: readonly Categorie[] = [];
-  setOfCheckedId = new Set<number>();
-
-  updateCheckedSet(id: number, checked: boolean): void {
+  setOfCheckedId = new Set<string>();
+  
+  updateCheckedSet(id: string, checked: boolean): void {
     if (checked) {
       this.setOfCheckedId.add(id);
     } else {
@@ -54,7 +31,7 @@ export class Referentiel2TableComponent implements OnInit {
     }
   }
 
-  onItemChecked(id: number, checked: boolean): void {
+  onItemChecked(id: string, checked: boolean): void {
     console.log('id--->',id)
     this.updateCheckedSet(id, checked);
     this.refreshCheckedStatus();
@@ -74,6 +51,7 @@ export class Referentiel2TableComponent implements OnInit {
     this.checked = this.listOfCurrentPageData.every(item => this.setOfCheckedId.has(item.id));
     this.indeterminate = this.listOfCurrentPageData.some(item => this.setOfCheckedId.has(item.id)) && !this.checked;
     console.log(this.setOfCheckedId);
+
     
   }
 
@@ -96,7 +74,42 @@ export class Referentiel2TableComponent implements OnInit {
   })
  }
 
- DeleteCategorie(id:any){
-  console.log(id)
- }
+
+  DeleteCategorie(){
+  console.log(this.setOfCheckedId)
+  // this.refreshCheckedStatus();
+     Swal.fire({
+    title: 'Êtes-vous sûr de vouloir supprimer ?' ,
+    text: 'ce n\'est pas possible de recevoir vous données ' ,
+    icon: 'warning' ,
+    showCancelButton: true,
+    confirmButtonText: 'Supprimer',
+    cancelButtonText: 'Annuler'
+  }).then((result) => {
+    if (result.value) {
+      for(let id of this.setOfCheckedId){
+      this.categorieService.DeleteCategorie(id)
+        .subscribe({
+          next:(res)=>{
+            Swal.fire("Suppression","Le categorie a supprimer :( ","success")
+            this.GetCategoriesList();
+          },
+          error:(err)=>{
+            alert("error")
+          }
+        })
+        this.setOfCheckedId.delete(id);
+      }
+    } else if (result.dismiss === Swal.DismissReason.cancel) {
+      Swal.fire('Annulation', 'Le categorie n\'a pas supprimer :)', 'error');
+    }
+  });
+ 
+}
+
+
+EditCategorie(id:string){
+  console.log("data ===>>> "+id)
+  this.router.navigateByUrl("/Referentiel/Voir?id="+id)
+}
 }

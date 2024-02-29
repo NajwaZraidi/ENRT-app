@@ -11,7 +11,8 @@
             [(nzChecked)]="checked"
             [nzIndeterminate]="indeterminate"
             (nzCheckedChange)="onAllChecked($event)"
-          ></th>
+          ><span *ngIf="setOfCheckedId.size!=0"> | <button style="margin-left: 5px;color: #ff0000b4;background-color: transparent;
+          border-color:  transparent;"  nz-button nzType="primary" nzDanger (click)="DeleteCategorie()"><fa-icon [icon]="faTrash"></fa-icon></button></span></th>
           <!-- <th
             [(nzChecked)]="checked"
           ></th> -->
@@ -21,6 +22,7 @@
           <th>Libellé</th>
           <th>Ordre</th>
           <th>HI7</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -29,11 +31,13 @@
           <!-- <td [nzChecked]="setOfCheckedId.has(data.id)" (click)="DeleteCategorie(data.id)"></td> -->
           <td>{{ data.code }}</td>
           <td>{{ data.description }}</td>
-          <td>{{ data.actif ? 'Oui' :'Non'}}</td>
+          <td><div style="width: 14px;height: 14px;border-radius: 7px;" [ngStyle]="{'background-color': data.actif ? '#27C24C':'tomato' }"></div></td>
           <td>{{ data.libelle }}</td>
           <td>{{ data.ordre }}</td>
           <td>{{ data.hi7 }}</td>
+          <td>   <button nz-button nzType="primary" class="btn btn-purple"  (click)="EditCategorie(data.id)"> Voir </button>
+          </td>
         </tr>
       </tbody>
-    </nz-table>
+    </nz-table>     
   

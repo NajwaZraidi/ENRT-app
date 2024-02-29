@@ -14,10 +14,11 @@ import { MouvementsComponent} from './admission/admission-body/mouvements/mouvem
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { Referentiel2Component } from './referentiel2/referentiel2.component';
-import { Referentiel2TableComponent } from './referentiel2/referentiel2-table/referentiel2-table.component';
 import { AjouterComponent } from './referentiel2/ajouter/ajouter.component';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { Referentiel2TableComponent } from './referentiel2/referentiel2-table/referentiel2-table.component';
+import { VoirComponent} from './referentiel2/voir/voir.component';
+import { EditComponent} from './referentiel2/edit/edit.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +30,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     MouvementsComponent,
     Referentiel2Component,
     Referentiel2TableComponent,
-    AjouterComponent
+    AjouterComponent,
+    VoirComponent,
+    EditComponent
   ],
   imports: [
     BrowserModule,

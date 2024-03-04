@@ -1,5 +1,4 @@
-export interface Categorie {
-  id: string,
+export interface CategorieRequest {
   code :string,
   description :string,
   actif: boolean,

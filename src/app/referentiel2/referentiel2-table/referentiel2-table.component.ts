@@ -16,13 +16,13 @@ export class Referentiel2TableComponent implements OnInit {
   faPenToSquare=faPenToSquare;
   constructor(private categorieService:CategorieService,private router :Router){}
 
- 
+
   checked = false;
   indeterminate = false;
   listOfCurrentPageData: readonly Categorie[] = [];
   listOfData: readonly Categorie[] = [];
   setOfCheckedId = new Set<string>();
-  
+
   updateCheckedSet(id: string, checked: boolean): void {
     if (checked) {
       this.setOfCheckedId.add(id);
@@ -52,17 +52,17 @@ export class Referentiel2TableComponent implements OnInit {
     this.indeterminate = this.listOfCurrentPageData.some(item => this.setOfCheckedId.has(item.id)) && !this.checked;
     console.log(this.setOfCheckedId);
 
-    
+
   }
 
   ngOnInit(): void {
      this.GetCategoriesList();
   }
- 
+
 
  GetCategoriesList(){
   this.categorieService.GetCategorie().subscribe({
- 
+
    next:(res)=>{
      console.log(res);
      this.listOfData=res
@@ -70,7 +70,7 @@ export class Referentiel2TableComponent implements OnInit {
    error:(err)=>{
      console.log(err);
    }
-   
+
   })
  }
 
@@ -104,12 +104,12 @@ export class Referentiel2TableComponent implements OnInit {
       Swal.fire('Annulation', 'Le categorie n\'a pas supprimer :)', 'error');
     }
   });
- 
+
 }
 
 
 EditCategorie(id:string){
   console.log("data ===>>> "+id)
-  this.router.navigateByUrl("/Referentiel/Voir?id="+id)
+  this.router.navigateByUrl("/referentiel/voir?id="+id)
 }
 }

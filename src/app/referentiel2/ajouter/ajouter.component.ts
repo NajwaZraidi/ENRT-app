@@ -26,7 +26,7 @@ export class AjouterComponent {
       actif: [false,Validators.required],
       libelle: ['',Validators.required],
       ordre: ['',Validators.required],
-      hi7: ['',Validators.required]
+      hl7: ['',Validators.required]
     });
   }
 
@@ -39,15 +39,16 @@ export class AjouterComponent {
       ).subscribe({
         next: (val: any)=>{
           Swal.fire("Categorie", 'L\'ajout a réussi', 'success');
-          this.clear()
+          this.formulaire.reset();
           this.formulaire.reset;
-          this.router.navigateByUrl("/Referentiel/Ajouter")
+          this.router.navigateByUrl("/referentiel/ajouter")
         },
         error:(err:any)=>{
+         Swal.fire("Categorie", 'L\'ajout a échoué', 'error');
          console.error(err)
         }
       })
-    
+
     }
   }
 
@@ -59,33 +60,34 @@ export class AjouterComponent {
       ).subscribe({
         next: (val: any)=>{
           Swal.fire("Categorie", 'L\'ajout a réussi', 'success');
-          this.clear()
+          this.formulaire.reset();
           this.formulaire.reset;
-          this.router.navigateByUrl("/Referentiel")
+          this.router.navigateByUrl("/referentiel")
         },
         error:(err:any)=>{
          console.error(err)
         }
       })
-    
+
     }
   }
+
   onFormReset(){
-    console.log("test")
-    this.clear();
+    this.formulaire.reset();;
   }
-  clear(){
-    this.formulaire.controls['code'].setValue('');
-    this.formulaire.controls['description'].setValue('');
-    this.formulaire.controls['actif'].setValue('');
-    this.formulaire.controls['libelle'].setValue('');
-    this.formulaire.controls['ordre'].setValue('');
-    this.formulaire.controls['hi7'].setValue('');
-  }
+
+  // clear(){
+  //   this.formulaire.controls['code'].setValue('');
+  //   this.formulaire.controls['description'].setValue('');
+  //   this.formulaire.controls['actif'].setValue('');
+  //   this.formulaire.controls['libelle'].setValue('');
+  //   this.formulaire.controls['ordre'].setValue('');
+  //   this.formulaire.controls['hl7'].setValue('');
+  // }
 
   GetCategorie(id:string){
     this.categorieService.GetCategorieByID(id).subscribe({
-   
+
      next:(res)=>{
        console.log(res);
        this.DataCategorie=res
@@ -93,7 +95,7 @@ export class AjouterComponent {
      error:(err)=>{
        console.log(err);
      }
-     
+
     })
    }
 }

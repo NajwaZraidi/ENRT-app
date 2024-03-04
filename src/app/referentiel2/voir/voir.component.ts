@@ -37,7 +37,7 @@ export class VoirComponent {
     if (this.id !== null) {
       console.log('ID de l\'URL :', this.id);
       this.categorieService.GetCategorieByID(this.id).subscribe({
-   
+
         next:(res)=>{
           console.log(res);
           this.DataCategorie=res;
@@ -45,7 +45,7 @@ export class VoirComponent {
         error:(err)=>{
           console.log(err);
         }
-        
+
        })
       }
      else {
@@ -56,7 +56,7 @@ export class VoirComponent {
 
 onFormUpdate(){
   console.log("data ===>>> "+this.id)
-  this.router.navigateByUrl("/Referentiel/Voir/Edit?id="+this.id)
+  this.router.navigateByUrl("/referentiel/voir/edit?id="+this.id)
 }
    onHandleDelete(){
     Swal.fire({
@@ -68,18 +68,18 @@ onFormUpdate(){
       cancelButtonText: 'Annuler'
     }).then((result) => {
       if (result.value) {
-        
+
         this.categorieService.DeleteCategorie(this.id)
           .subscribe({
             next:(res)=>{
               Swal.fire("Suppression","La categorie a supprimer :( ","success")
-              this.router.navigateByUrl("/Referentiel")
+              this.router.navigateByUrl("/referentiel")
             },
             error:(err)=>{
-              alert("error")
+              Swal.fire('Annulation', 'La categorie n\'a pas supprimer :)', 'error');
             }
           })
-          
+
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         Swal.fire('Annulation', 'La categorie n\'a pas supprimer :)', 'error');
       }

@@ -27,7 +27,7 @@ export class EditComponent {
       actif: [false,Validators.required],
       libelle: ['',Validators.required],
       ordre: ['',Validators.required],
-      hi7: ['',Validators.required]
+      hl7: ['',Validators.required]
     });
   }
   id:any;
@@ -37,7 +37,7 @@ export class EditComponent {
     if (this.id !== null) {
       console.log('ID de l\'URL :', this.id);
       this.categorieService.GetCategorieByID(this.id).subscribe({
-   
+
         next:(res)=>{
           console.log(res);
           this.formulaire.controls['code'].setValue(res.code);
@@ -45,13 +45,13 @@ export class EditComponent {
           this.formulaire.controls['actif'].setValue(res.actif);
           this.formulaire.controls['libelle'].setValue(res.libelle);
           this.formulaire.controls['ordre'].setValue(res.ordre);
-          this.formulaire.controls['hi7'].setValue(res.hi7);
+          this.formulaire.controls['hl7'].setValue(res.hl7);
           this.DataCategorie=res;
         },
         error:(err)=>{
           console.log(err);
         }
-        
+
        })
       }
      else {
@@ -66,13 +66,13 @@ onFormUpdate(){
   this.categorieService.EditCategorie(this.id,this.formulaire.value).subscribe({
     next:(res)=>{
       Swal.fire("Categorie",'La modification  a réussi','success');
-      this.router.navigateByUrl("/Referentiel")
+      this.router.navigateByUrl("/referentiel")
     },
     error:()=>{
       alert("error leur de la modification de categorie")
     }
   })
-  
+
 }
 
 

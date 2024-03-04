@@ -1,9 +1,8 @@
-
-<nz-card  [nzTitle]="CardTitle" >
-    <ng-template #CardTitle>
-      <h3 style="text-align :left;">Consulter Catégorie de document</h3>
-    </ng-template>
-    <form nz-form [formGroup]="formulaire">
+<nz-card [nzTitle]="CardTitle">
+  <ng-template #CardTitle>
+    <h3 style="text-align :left;">Consulter Catégorie de document</h3>
+  </ng-template>
+  <form nz-form [formGroup]="formulaire">
     <div nz-row>
       <div nz-col nzSpan="4">
         <div class="label-container">
@@ -16,7 +15,10 @@
         <div class="label-container">
           <div class="text-justify"><span><label>{{ this.DataCategorie.code }}</label></span></div>
           <div class="text-justify"><span><label>{{ this.DataCategorie.description }}</label></span></div>
-          <div class="text-justify"><span>{{this.DataCategorie.actif ? 'OUI' :'NON'}}</span></div>
+          <div class="text-justify">
+            <div style="width: 14px;height: 14px;border-radius: 7px;"
+              [ngStyle]="{'background-color': this.DataCategorie.actif ? '#27C24C':'tomato' }"></div>
+          </div>
         </div>
       </div>
       <div nz-col nzSpan="4">
@@ -30,17 +32,21 @@
         <div class="label-container">
           <div class="text-justify"><span><label>{{ this.DataCategorie.libelle }}</label></span></div>
           <div class="text-justify"><span><label>{{ this.DataCategorie.ordre }}</label></span></div>
-          <div class="text-justify"><span><label>{{ this.DataCategorie.hi7 }}</label></span></div>
-      
+          <div class="text-justify"><span><label>{{ this.DataCategorie.hl7 }}</label></span></div>
+
         </div>
       </div>
     </div>
-    </form>
-  </nz-card>
-  <nz-card  class="card2"> 
-    <button nz-button class="btn btn-purple" (click)="onFormUpdate()" ><fa-icon [icon]="faPenToSquare"  ></fa-icon> Modifier </button>
-    <button nz-button class="btn btn-danger" (click)="onHandleDelete()"><fa-icon [icon]="faTrash"></fa-icon> Supprimer </button>
-    <button nz-button class="btn btn-white" routerLink="/Referentiel"><fa-icon [icon]="faReply"  ></fa-icon> Quitter</button>
-  </nz-card>
- 
-
+  </form>
+</nz-card>
+<nz-card class="card2">
+  <button nz-button class="btn btn-purple" (click)="onFormUpdate()">
+    <fa-icon [icon]="faPenToSquare"></fa-icon> Modifier
+  </button>
+  <button nz-button class="btn btn-danger" (click)="onHandleDelete()">
+    <fa-icon [icon]="faTrash"></fa-icon> Supprimer
+  </button>
+  <button nz-button class="btn btn-white" routerLink="/referentiel">
+    <fa-icon [icon]="faReply"></fa-icon> Quitter
+  </button>
+</nz-card>

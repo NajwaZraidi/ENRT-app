@@ -18,6 +18,7 @@ export class CategorieService {
   }
   GetCategorieByID(id:string): Observable<any>{
     return this.http.get('http://localhost:8080/categories/by-id/'+id);
+
   }
 
   DeleteCategorie(id :string){

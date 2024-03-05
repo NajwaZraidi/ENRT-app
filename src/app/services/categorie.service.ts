@@ -13,20 +13,20 @@ export class CategorieService {
   AjouterCategorie(data:any): Observable<any>{
     console.log("Hello World");
 
-    return this.http.post('http://localhost:8080/categories/save',data);
+    return this.http.post('http://localhost:8080/categorie-document/save',data);
   }
   GetCategorie(): Observable<any>{
-    return this.http.get('http://localhost:8080/categories/all');
+    return this.http.get('http://localhost:8080/categorie-document/all');
   }
   GetCategorieByID(id:string): Observable<any>{
-    return this.http.get('http://localhost:8080/categories/by-id/'+id);
+    return this.http.get('http://localhost:8080/categorie-document/by-id/'+id);
 
   }
 
   DeleteCategorie(id :string){
-    return this.http.delete("http://localhost:8080/categories/delete/"+id);
+    return this.http.delete("http://localhost:8080/categorie-document/delete/"+id);
   }
   EditCategorie(id :string,data:Categorie){
-    return this.http.put<Categorie>('http://localhost:8080/categories/update/'+id,data);
+    return this.http.put<Categorie>('http://localhost:8080/categorie-document/update/'+id,data);
   }
 }

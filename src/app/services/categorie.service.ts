@@ -11,6 +11,8 @@ export class CategorieService {
   constructor(private http:HttpClient) {}
 
   AjouterCategorie(data:any): Observable<any>{
+    console.log("Hello World");
+
     return this.http.post('http://localhost:8080/categories/save',data);
   }
   GetCategorie(): Observable<any>{

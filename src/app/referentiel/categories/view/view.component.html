@@ -1,0 +1,46 @@
+
+<nz-card  [nzTitle]="CardTitle" >
+    <ng-template #CardTitle>
+      <h3 style="text-align :left;">Consulter Catégorie de document</h3>
+    </ng-template>
+    <form nz-form [formGroup]="formulaire">
+    <div nz-row>
+      <div nz-col nzSpan="4">
+        <div class="label-container">
+          <div class="text-justify"><span>Code</span></div>
+          <div class="text-justify"><span>Description</span></div>
+          <div class="text-justify"><span>Actif</span></div>
+        </div>
+      </div>
+      <div nz-col nzSpan="8">
+        <div class="label-container">
+          <div class="text-justify"><span><label>{{ DataCategorie?.code }}</label></span></div>
+          <div class="text-justify"><span><label>{{ DataCategorie?.description }}</label></span></div>
+          <div class="text-justify"><span>{{DataCategorie?.actif ? 'OUI' :'NON'}}</span></div>
+        </div>
+      </div>
+      <div nz-col nzSpan="4">
+        <div class="label-container">
+          <div class="text-justify"><span>Libellé </span></div>
+          <div class="text-justify"><span>Ordre </span></div>
+          <div class="text-justify"><span>HI7 </span></div>
+        </div>
+      </div>
+      <div nz-col nzSpan="8">
+        <div class="label-container">
+          <div class="text-justify"><span><label>{{ DataCategorie?.libelle }}</label></span></div>
+          <div class="text-justify"><span><label>{{ DataCategorie?.ordre }}</label></span></div>
+          <div class="text-justify"><span><label>{{ DataCategorie?.hi7 }}</label></span></div>
+      
+        </div>
+      </div>
+    </div>
+    </form>
+  </nz-card>
+  <nz-card  class="card2"> 
+    <button nz-button class="btn btn-purple" (click)="onFormUpdate()" ><fa-icon [icon]="faPenToSquare"  ></fa-icon> Modifier </button>
+    <button nz-button class="btn btn-danger" (click)="onHandleDelete()"><fa-icon [icon]="faTrash"></fa-icon> Supprimer </button>
+    <button nz-button class="btn btn-white" routerLink="/referentiel/categories"><fa-icon [icon]="faReply"  ></fa-icon> Quitter</button>
+  </nz-card>
+ 
+

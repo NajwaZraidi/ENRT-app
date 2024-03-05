@@ -1,0 +1,41 @@
+:host {
+    width: 100%;
+  }
+  nz-card{
+    border-radius: 6px;
+    border-color: rgb(220, 220, 220);
+  }
+  
+   .info-card-container{
+    margin-bottom: 10px;
+  }
+  ::ng-deep .ourOwnClass .ant-alert-error {
+    border-radius: 20px;
+    height: 30px;
+  }
+  .label-container {
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .label-container span {
+    display: block;
+    margin-bottom: 10px;
+  }
+  nz-row {
+    margin-bottom: 20px;
+  }
+  .text-justify {
+    text-align: justify;
+    text-justify: inter-word;
+    font-size: 16px;
+  }
+  
+  .label-container div {
+    display: block;
+    margin-bottom: 10px;
+  }
+  .ant-card-head-title {
+    text-align: left;
+  }
+  

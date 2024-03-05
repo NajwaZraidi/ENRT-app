@@ -1,0 +1,211 @@
+<div class="container">
+    <!-- CARD 1-->
+    <div class="general-info-container">
+      <nz-card [nzTitle]="CardTitle" class="info-card-container">
+        <ng-template #CardTitle>
+          <div style="display: flex; width: 100%; justify-content: space-between; align-items: center;">
+            <h3 style="text-align: left; margin: 0;">Informations générales</h3>
+            <div style="display: flex; align-items: center;">
+              <span style="margin-right: 5px;">RDV N°</span>
+              <nz-alert class="ourOwnClass" nzType="success" [nzMessage]="Message" style="margin: 0;">
+                <ng-template #Message>
+                  <h5 style=" margin: 0;border-radius: 4px;">Ouverte</h5>
+                </ng-template>
+              </nz-alert>
+            </div>
+          </div>
+        </ng-template>
+        <div nz-row>
+          <div nz-col nzSpan="4">
+            <div class="label-container">
+              <div class="text-justify"><span>Service d'admission </span></div>
+              <div class="text-justify"><span>Unité d'admission </span></div>
+              <div class="text-justify"><span>Motif </span></div>
+              <div class="text-justify"><span>Date Enregitrement </span></div>
+            </div>
+          </div>
+          <div nz-col nzSpan="8">
+            <div class="label-container">
+              <div class="text-justify"><span>Dermatologie</span></div>
+              <div class="text-justify"><span>Hospitalisation </span></div>
+              <div class="text-justify"><span>Hospitalisation Urgente</span></div>
+              <div class="text-justify"><span>18-06-2023</span></div>
+            </div>
+          </div>
+          <div nz-col nzSpan="4">
+            <div class="label-container">
+              <div class="text-justify"><span>Date réelle d'admission</span></div>
+              <div class="text-justify"><span>Date de sortie</span></div>
+              <div class="text-justify"><span>Service de sortie</span></div>
+              <div class="text-justify"><span>Opérateur</span></div>
+            </div>
+          </div>
+          <div nz-col nzSpan="8">
+            <div class="label-container">
+              <div class="text-justify"><span>21/02/2024 10:11</span></div>
+              <div class="text-justify"><span>21/02/2024 10:11</span></div>
+              <div class="text-justify"><span>Dermatologie </span></div>
+              <div class="text-justify"><span>Bezzaz PUser</span></div>
+            </div>
+          </div>
+        </div>
+      </nz-card>
+  
+    </div>
+  
+    <!-- CARD 2-->
+    <div class="general-info-container">
+      <nz-card [nzTitle]="CardTitle2" class="info-card-container">
+        <ng-template #CardTitle2>
+          <h3 style="text-align :left;">Informations médicales</h3>
+        </ng-template>
+        <div nz-row>
+          <div nz-col nzSpan="4">
+            <div class="label-container">
+              <div class="text-justify"><span>Catégorie admission </span></div>
+              <div class="text-justify"><span>Commentaire </span></div>
+            </div>
+          </div>
+          <div nz-col nzSpan="8">
+            <div class="label-container">
+              <div class="text-justify"><span>Dermatologie</span></div>
+              <div class="text-justify"><span> ---------- </span></div>
+            </div>
+          </div>
+          <div nz-col nzSpan="4">
+            <div class="label-container">
+              <div class="text-justify"><span>Type accident </span></div>
+            </div>
+          </div>
+          <div nz-col nzSpan="8">
+            <div class="label-container">
+              <div class="text-justify"><span>Maladie</span></div>
+            </div>
+          </div>
+        </div>
+      </nz-card>
+  
+    </div>
+    <!-- CARD 3-->
+    <div class="general-info-container">
+      <nz-card [nzTitle]="CardTitle3" class="info-card-container">
+        <ng-template #CardTitle3>
+          <h3 style="text-align:left;">Médecin prescripteur et traitant</h3>
+        </ng-template>
+        <div nz-row>
+          <div nz-col nzSpan="4">
+            <div class="label-container">
+              <div class="text-justify"><span>Type prescripteur </span></div>
+              <div class="text-justify"><span>Médecin traitant </span></div>
+            </div>
+          </div>
+          <div nz-col nzSpan="8">
+            <div class="label-container">
+              <div class="text-justify"><span> ----------- </span></div>
+              <div class="text-justify"><span> Dr. TEST DOCTEUR - Cardiologie </span></div>
+            </div>
+          </div>
+          <div nz-col nzSpan="4">
+            <div class="label-container">
+              <div class="text-justify"><span> Nom prescripteur </span></div>
+              <div class="text-justify"><span> Ville </span></div>
+            </div>
+          </div>
+          <div nz-col nzSpan="8">
+            <div class="label-container">
+              <div class="text-justify"><span>---------</span></div>
+              <div class="text-justify"><span>---------</span></div>
+  
+            </div>
+          </div>
+        </div>
+      </nz-card>
+  
+    </div>
+    <!-- CARD 4-->
+    <div class="general-info-container">
+      <nz-card [nzTitle]="CardTitle4" class="info-card-container">
+        <ng-template #CardTitle4>
+          <div style="display: flex; width: 100%; justify-content: space-between; align-items: center;">
+            <h3 style="text-align: left; margin: 0;">Débiteur</h3>
+            <div style="display: flex; align-items: center;">
+              <nz-alert class="ourOwnClass" nzType="error" [nzMessage]="Message" style="margin-right: 10px;">
+                <ng-template #Message>
+                  <h5 style=" margin: 0;">Règlement part patient</h5>
+                </ng-template>
+              </nz-alert>
+              <nz-alert class="ourOwnClass" nzType="error" [nzMessage]="Message2" style="margin: 0;">
+                <ng-template #Message2>
+                  <h5 style=" margin: 0;">Règlement part organisme</h5>
+                </ng-template>
+              </nz-alert>
+            </div>
+          </div>
+        </ng-template>
+        <div nz-row>
+          <div nz-col nzSpan="4">
+            <div class="label-container">
+              <div class="text-justify"><span>Débiteur </span></div>
+              <div class="text-justify"><span>Médecin traitant </span></div>
+            </div>
+          </div>
+          <div nz-col nzSpan="8">
+            <div class="label-container">
+              <div class="text-justify"><span> Payant direct </span></div>
+              <div class="text-justify"><span> PAYANT </span></div>
+            </div>
+          </div>
+          <div nz-col nzSpan="4">
+            <div class="label-container">
+              <div class="text-justify"><span> Convention </span></div>
+            </div>
+          </div>
+          <div nz-col nzSpan="8">
+            <div class="label-container">
+              <div class="text-justify"><span>Payant</span></div>
+            </div>
+          </div>
+        </div>
+      </nz-card>
+  
+    </div>
+  
+    <!-- CARD 5-->
+    <div class="general-info-container">
+      <nz-card [nzTitle]="CardTitle5" class="info-card-container">
+        <ng-template #CardTitle5>
+          <h3 style="text-align:left;">Historique des modifications</h3>
+        </ng-template>
+        <div nz-row>
+          <div nz-col nzSpan="4">
+            <div class="label-container">
+              <div class="text-justify"><span>Créé par </span></div>
+              <div class="text-justify"><span>le </span></div>
+            </div>
+          </div>
+          <div nz-col nzSpan="8">
+            <div class="label-container">
+              <div class="text-justify"><span>ESSANBRI </span></div>
+              <div class="text-justify"><span>21/02/2024 21:51 </span></div>
+  
+            </div>
+          </div>
+          <div nz-col nzSpan="4">
+            <div class="label-container">
+              <div class="text-justify"><span> Mis à jour par </span></div>
+              <div class="text-justify"><span>le </span></div>
+            </div>
+          </div>
+          <div nz-col nzSpan="8">
+            <div class="label-container">
+              <div class="text-justify"><span>ESSANBRI </span></div>
+              <div class="text-justify"><span>21/02/2024 21:51 </span></div>
+  
+            </div>
+          </div>
+        </div>
+      </nz-card>
+  
+    </div>
+  </div>
+  

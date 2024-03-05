@@ -1,0 +1,14 @@
+p {
+    margin: 0;
+  }
+  
+  :host {
+    flex: 1;
+    background-color: transparent;
+  }
+  
+  nz-card {
+    width: 100% !important;
+    height: 100%;
+  }
+  

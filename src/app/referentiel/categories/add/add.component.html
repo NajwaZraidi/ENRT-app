@@ -38,8 +38,8 @@
     </form>
   </nz-card>
   <nz-card  class="card2"> 
-    <button nz-button class="btn btn-purple" (click)="onFormSubmit()" ><fa-icon [icon]="faFloppyDisk"  ></fa-icon> Enregister & Nouveau </button>
-    <button nz-button class="btn btn-purple" (click)="onFormSubmitQ()"><fa-icon [icon]="faFloppyDisk"></fa-icon> Enregister & Quitter </button>
+    <button nz-button class="btn btn-purple" (click)="onFormSubmit(true)" ><fa-icon [icon]="faFloppyDisk"  ></fa-icon> Enregister & Nouveau </button>
+    <button nz-button class="btn btn-purple" (click)="onFormSubmit(false)"><fa-icon [icon]="faFloppyDisk"></fa-icon> Enregister & Quitter </button>
     <button nz-button class="btn btn-white" (click)="onFormReset()"><fa-icon [icon]="faRotateLeft"></fa-icon> Réinitialiser </button>
     <button nz-button class="btn btn-white" routerLink="/referentiel/categories"><fa-icon [icon]="faReply"  ></fa-icon> Quitter</button>
   </nz-card>

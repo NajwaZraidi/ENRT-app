@@ -32,7 +32,7 @@ export class AddComponent {
   }
 
 
-  onFormSubmit(){
+  onFormSubmit(flag:boolean){
     if(this.formulaire.valid){
       console.log(this.formulaire.value)
       this.categorieService.AjouterCategorie(
@@ -41,7 +41,11 @@ export class AddComponent {
         next: (val: any)=>{
           Swal.fire("Categorie", 'L\'ajout a réussi', 'success');
           this.formulaire.reset();
-          this.router.navigateByUrl("/referentiel/categories/ajouter")
+          if(flag){
+            this.router.navigateByUrl("/referentiel/categories/ajouter")
+          }
+          else
+          { this.router.navigateByUrl("/referentiel/categories")}
         },
         error:(err:any)=>{
          console.error(err)
@@ -51,24 +55,6 @@ export class AddComponent {
     }
   }
 
-  onFormSubmitQ(){
-    if(this.formulaire.valid){
-      console.log(this.formulaire.value)
-      this.categorieService.AjouterCategorie(
-        this.formulaire.value
-      ).subscribe({
-        next: (val: any)=>{
-          Swal.fire("Categorie", 'L\'ajout a réussi', 'success');
-          this.formulaire.reset();
-          this.router.navigateByUrl("/referentiel/categories")
-        },
-        error:(err:any)=>{
-         console.error(err)
-        }
-      })
-    
-    }
-  }
   onFormReset(){
     console.log("test")
     // this.clear();

@@ -15,6 +15,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzGridModule } from 'ng-zorro-antd/grid';
+import { SearchComponent } from './search/search.component';
+import { NzCollapseModule } from 'ng-zorro-antd/collapse';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { NzGridModule } from 'ng-zorro-antd/grid';
     AddComponent,
     EditComponent,
     ViewComponent,
-    ListComponent
+    ListComponent,
+    SearchComponent
   ],
   imports: [
     CommonModule,
@@ -35,7 +38,8 @@ import { NzGridModule } from 'ng-zorro-antd/grid';
     FontAwesomeModule,
     NzLayoutModule,
     NzTableModule,
-    NzGridModule
+    NzGridModule,
+    NzCollapseModule
   ]
 })
 export class CategoriesModule { }

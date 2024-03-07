@@ -28,7 +28,7 @@ export class ViewComponent implements OnInit {
       actif: [false,Validators.required],
       libelle: ['',Validators.required],
       ordre: ['',Validators.required],
-      hi7: ['',Validators.required]
+      hl7: ['',Validators.required]
     });
   }
   id:any;

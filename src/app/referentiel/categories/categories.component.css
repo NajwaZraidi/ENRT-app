@@ -8,7 +8,7 @@
     margin-bottom: 48px;
     padding: 20px;
   }
-  
+
   nz-layout nz-layout,
   nz-layout:last-child {
     margin: 0;
@@ -33,9 +33,55 @@
     border-color: #1a0f4ad0;
     font-size: 13px;
     font-family: monospace;
-    
+
   }
   .btn-purple:hover{
     background-color: #1a104a;
     border-color: #1a0f4a;
   }
+
+::ng-deep .search-form-header {
+    color: #231a53;
+    font-size: 1rem;
+}
+
+::ng-deep .ant-collapse-header.ng-tns-c2051594271-5 {
+  background-color: #f0f2f5;
+}
+
+.input-div {
+  display: flex;
+  justify-content: space-between;
+  column-gap: 50px;
+  flex-direction: row;
+  align-items: center;
+}
+
+.ant-advanced-search-form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 25px;
+}
+
+/* HTML: <div class="loader"></div> */
+.loading-container {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* HTML: <div class="loader"></div> */
+.loader {
+  height: 5px;
+  width: 200px;
+  --c:no-repeat linear-gradient(#6100ee 0 0);
+  background: var(--c),var(--c),#d7b8fc;
+  background-size: 60% 100%;
+  animation: l16 3s infinite;
+}
+@keyframes l16 {
+  0%   {background-position:-150% 0,-150% 0}
+  66%  {background-position: 250% 0,-150% 0}
+  100% {background-position: 250% 0, 250% 0}
+}

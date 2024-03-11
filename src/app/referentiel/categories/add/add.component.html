@@ -14,8 +14,11 @@
       </div>
       <div nz-col nzSpan="8">
         <div class="label-container">
-          <div class="text-justify"><span><input nz-input  nzSize="default" formControlName="code" /></span></div>
-          <div class="text-justify"><span><textarea nz-input formControlName="description" [nzAutosize]="{ minRows: 3, maxRows: 5 }"></textarea></span></div>
+          <div class="text-justify"><span>
+            <input nz-input  nzSize="default" formControlName="code" />
+        </span></div>
+          <div class="text-justify"><span>
+            <textarea nz-input formControlName="description" [nzAutosize]="{ minRows: 3, maxRows: 5 }" nzStatus="error"></textarea></span></div>
           <div class="text-justify"><span><nz-switch formControlName="actif" nzCheckedChildren="Oui" nzUnCheckedChildren="Non"></nz-switch></span></div>
         </div>
       </div>

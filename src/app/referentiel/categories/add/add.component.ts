@@ -53,6 +53,18 @@ export class AddComponent {
       })
     
     }
+    else{
+      console.log("error")
+        Object.values(this.formulaire.controls).forEach(control => {
+          if (control.invalid) {
+             console.log(control)
+             console.log("--------------")
+             control.markAsDirty();
+            control.updateValueAndValidity({ onlySelf: true });
+          }
+        });
+      
+    }
   }
 
   onFormReset(){

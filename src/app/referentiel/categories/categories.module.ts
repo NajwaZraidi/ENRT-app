@@ -39,7 +39,7 @@ import { NzCollapseModule } from 'ng-zorro-antd/collapse';
     NzLayoutModule,
     NzTableModule,
     NzGridModule,
-    NzCollapseModule
+    NzCollapseModule,
   ]
 })
 export class CategoriesModule { }

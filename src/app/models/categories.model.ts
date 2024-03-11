@@ -5,5 +5,5 @@ export interface Categorie {
   actif: boolean,
   libelle :string,
   ordre: number,
-  hi7 :string
+  hl7 :string
 }

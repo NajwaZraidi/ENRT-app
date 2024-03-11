@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { faReply} from '@fortawesome/free-solid-svg-icons'
 import { faFloppyDisk,faPenToSquare,faTrash} from '@fortawesome/free-solid-svg-icons';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CategorieService } from '../../../services/categorie.service'; 
+import { CategorieService } from '../../../services/categorie.service';
 import { Router} from '@angular/router';
 import Swal from "sweetalert2";
 import { ActivatedRoute } from '@angular/router';
-import { Categorie } from '../../../models/categories.model'; 
+import { Categorie } from '../../../models/categories.model';
 
 @Component({
   selector: 'app-view',
@@ -20,7 +20,7 @@ export class ViewComponent implements OnInit {
   faTrash=faTrash;
   formulaire: FormGroup;
   isDisabled :boolean =true;
-  DataCategorie!:Categorie;
+  dataCategorie : Categorie | null = null;
   constructor(private formBuilder: FormBuilder,private categorieService:CategorieService,private router :Router,private route: ActivatedRoute) {
     this.formulaire = this.formBuilder.group({
       code: ['',Validators.required],
@@ -28,7 +28,7 @@ export class ViewComponent implements OnInit {
       actif: [false,Validators.required],
       libelle: ['',Validators.required],
       ordre: ['',Validators.required],
-      hi7: ['',Validators.required]
+      hl7: ['',Validators.required]
     });
   }
   id:any;
@@ -38,15 +38,15 @@ export class ViewComponent implements OnInit {
     if (this.id !== null) {
       console.log('ID de l\'URL :', this.id);
       this.categorieService.GetCategorieByID(this.id).subscribe({
-   
+
         next:(res)=>{
           console.log(res);
-          this.DataCategorie=res;
+          this.dataCategorie=res;
         },
         error:(err)=>{
           console.log(err);
         }
-        
+
        })
       }
      else {
@@ -69,7 +69,7 @@ onFormUpdate(){
       cancelButtonText: 'Annuler'
     }).then((result) => {
       if (result.value) {
-        
+
         this.categorieService.DeleteCategorie(this.id)
           .subscribe({
             next:(res)=>{
@@ -80,7 +80,7 @@ onFormUpdate(){
               alert("error")
             }
           })
-          
+
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         Swal.fire('Annulation', 'La categorie n\'a pas supprimer :)', 'error');
       }

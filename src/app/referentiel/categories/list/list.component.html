@@ -1,42 +1,39 @@
-
-<nz-table
-#rowSelectionTable
-nzShowSizeChanger
-[nzData]="listOfData"
-(nzCurrentPageDataChange)="onCurrentPageDataChange($event)"
->
-<thead>
-  <tr>
-    <th
-      [(nzChecked)]="checked"
-      [nzIndeterminate]="indeterminate"
-      (nzCheckedChange)="onAllChecked($event)"
-    ><span *ngIf="setOfCheckedId.size!=0"> | <button style="margin-left: 5px;color: #ff0000b4;background-color: transparent;
-    border-color:  transparent;"  nz-button nzType="primary" nzDanger (click)="DeleteCategorie()"><fa-icon [icon]="faTrash"></fa-icon></button></span></th>
-    <!-- <th
+<nz-table #rowSelectionTable nzShowSizeChanger [nzData]="listOfData"
+  (nzCurrentPageDataChange)="onCurrentPageDataChange($event)">
+  <thead>
+    <tr>
+      <th [(nzChecked)]="checked" [nzIndeterminate]="indeterminate" (nzCheckedChange)="onAllChecked($event)"><span
+          *ngIf="setOfCheckedId.size!=0"> | <button style="margin-left: 5px;color: #ff0000b4;background-color: transparent;
+    border-color:  transparent;" nz-button nzType="primary" nzDanger (click)="DeleteCategorie()">
+            <fa-icon [icon]="faTrash"></fa-icon>
+          </button></span></th>
+      <!-- <th
       [(nzChecked)]="checked"
     ></th> -->
-    <th>Code</th>
-    <th>Description</th>
-    <th>Actif</th>
-    <th>Libellé</th>
-    <th>Ordre</th>
-    <th>HI7</th>
-    <th></th>
-  </tr>
-</thead>
-<tbody>
-  <tr *ngFor="let data of rowSelectionTable.data">
-    <td [nzChecked]="setOfCheckedId.has(data.id)" (nzCheckedChange)="onItemChecked(data.id, $event)"></td>
-    <!-- <td [nzChecked]="setOfCheckedId.has(data.id)" (click)="DeleteCategorie(data.id)"></td> -->
-    <td>{{ data.code }}</td>
-    <td>{{ data.description }}</td>
-    <td><div style="width: 14px;height: 14px;border-radius: 7px;" [ngStyle]="{'background-color': data.actif ? '#27C24C':'tomato' }"></div></td>
-    <td>{{ data.libelle }}</td>
-    <td>{{ data.ordre }}</td>
-    <td>{{ data.hi7 }}</td>
-    <td>   <button nz-button nzType="primary" class="btn btn-purple"  (click)="EditCategorie(data.id)"> Voir </button>
-    </td>
-  </tr>
-</tbody>
-</nz-table>     
+      <th>Code</th>
+      <th>Description</th>
+      <th>Actif</th>
+      <th>Libellé</th>
+      <th>Ordre</th>
+      <th>HL7</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of rowSelectionTable.data">
+      <td [nzChecked]="setOfCheckedId.has(data.id)" (nzCheckedChange)="onItemChecked(data.id, $event)"></td>
+      <!-- <td [nzChecked]="setOfCheckedId.has(data.id)" (click)="DeleteCategorie(data.id)"></td> -->
+      <td>{{ data.code }}</td>
+      <td>{{ data.description }}</td>
+      <td>
+        <div style="width: 14px;height: 14px;border-radius: 7px;"
+          [ngStyle]="{'background-color': data.actif ? '#27C24C':'tomato' }"></div>
+      </td>
+      <td>{{ data.libelle }}</td>
+      <td>{{ data.ordre }}</td>
+      <td>{{ data.hl7 }}</td>
+      <td> <button nz-button nzType="primary" class="btn btn-purple" (click)="EditCategorie(data.id)"> Voir </button>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>

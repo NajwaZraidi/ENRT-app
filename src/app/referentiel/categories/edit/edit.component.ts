@@ -6,7 +6,7 @@ import { CategorieService } from '../../../services/categorie.service';
 import { Router} from '@angular/router';
 import Swal from "sweetalert2";
 import { ActivatedRoute } from '@angular/router';
-import { Categorie } from '../../../models/categories.model'; 
+import { Categorie } from '../../../models/categories.model';
 
 @Component({
   selector: 'app-edit',
@@ -27,7 +27,7 @@ export class EditComponent {
       actif: [false,Validators.required],
       libelle: ['',Validators.required],
       ordre: ['',Validators.required],
-      hi7: ['',Validators.required]
+      hl7: ['',Validators.required]
     });
   }
   id:any;
@@ -37,7 +37,7 @@ export class EditComponent {
     if (this.id !== null) {
       console.log('ID de l\'URL :', this.id);
       this.categorieService.GetCategorieByID(this.id).subscribe({
-   
+
         next:(res)=>{
           console.log(res);
           this.formulaire.controls['code'].setValue(res.code);
@@ -45,13 +45,13 @@ export class EditComponent {
           this.formulaire.controls['actif'].setValue(res.actif);
           this.formulaire.controls['libelle'].setValue(res.libelle);
           this.formulaire.controls['ordre'].setValue(res.ordre);
-          this.formulaire.controls['hi7'].setValue(res.hi7);
+          this.formulaire.controls['hl7'].setValue(res.hl7);
           this.DataCategorie=res;
         },
         error:(err)=>{
           console.log(err);
         }
-        
+
        })
       }
      else {
@@ -72,7 +72,7 @@ onFormUpdate(){
       alert("error leur de la modification de categorie")
     }
   })
-  
+
 }
 
 }

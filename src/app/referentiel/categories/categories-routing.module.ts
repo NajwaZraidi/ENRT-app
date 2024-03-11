@@ -7,11 +7,11 @@ import { ListComponent } from './list/list.component';
 import { EditComponent } from './edit/edit.component';
 
 const routes: Routes = [
-{ path: 'ajouter', component: AddComponent  },
-{path:'edit',component:EditComponent},
-{ path: 'consulter', component: ViewComponent },
-{ path: 'list', component: ListComponent },
-{ path: '', component: CategoriesComponent }
+  { path: 'ajouter', component: AddComponent, },
+  { path:'edit',component:EditComponent, },
+  { path: 'consulter', component: ViewComponent, },
+  { path: 'list', component: ListComponent, },
+  { path: '', component: CategoriesComponent,  }
 ];
 
 @NgModule({

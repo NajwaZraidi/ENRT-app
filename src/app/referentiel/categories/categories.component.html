@@ -1,9 +1,97 @@
 <nz-layout>
-      
-    <nz-card style="width:100%;" > 
-      <button nz-button nzType="primary" class="btn btn-purple" routerLink="/referentiel/categories/ajouter"><fa-icon [icon]="faPlus"></fa-icon> Ajouter </button>
-    </nz-card>
-    <app-list></app-list>
-      
-  </nz-layout>
-    
+  <nz-collapse nzExpandIconPosition="right">
+    <nz-collapse-panel [nzHeader]=collapsePanelHeader [nzActive]="panel.active" [nzDisabled]="panel.disabled">
+      <form nz-form class="ant-advanced-search-form" [formGroup]="formulaire">
+
+        <div nz-row [nzGutter]="24">
+          <div nz-col [nzSpan]="12" [hidden]="false">
+            <div class="input-div">
+              <nz-form-label style="flex: 1; text-align: left; font-size: 16px; color: #000000A1">Code</nz-form-label>
+              <nz-form-control style="flex: 2">
+                <input nz-input placeholder="Code" formControlName='code' [attr.id]="'code'" />
+              </nz-form-control>
+            </div>
+          </div>
+          <div nz-col [nzSpan]="12" [hidden]="false">
+            <div class="input-div">
+              <nz-form-label style="flex: 1; text-align: left; font-size: 16px; color: #000000A1">Libellé
+              </nz-form-label>
+              <nz-form-control style="flex: 2">
+                <input nz-input placeholder="Libellé" formControlName='libelle' [attr.id]="'libelle'" />
+              </nz-form-control>
+            </div>
+          </div>
+        </div>
+
+        <div nz-row [nzGutter]="24">
+          <div nz-col [nzSpan]="12" [hidden]="false">
+            <div class="input-div">
+              <nz-form-label style="flex: 1; text-align: left; font-size: 16px; color: #000000A1">Description
+              </nz-form-label>
+              <nz-form-control style="flex: 2">
+                <input nz-input placeholder="Description" [formControlName]="'description'" [attr.id]="'description'" />
+              </nz-form-control>
+            </div>
+          </div>
+          <div nz-col [nzSpan]="12" [hidden]="false">
+            <div class="input-div">
+              <nz-form-label style="flex: 1; text-align: left; font-size: 16px; color: #000000A1">Ordre</nz-form-label>
+              <nz-form-control style="flex: 2">
+                <input nz-input placeholder="Ordre" [formControlName]="'ordre'" [attr.id]="'ordre'" />
+              </nz-form-control>
+            </div>
+          </div>
+        </div>
+
+        <div nz-row [nzGutter]="24">
+          <div nz-col [nzSpan]="12" [hidden]="false">
+            <div class="input-div">
+              <nz-form-label style="flex: 1; text-align: left; font-size: 16px; color: #000000A1">Actif</nz-form-label>
+              <nz-select style="flex: 2" [formControlName]="'actif'" [attr.id]="'actif'">
+                <nz-option [nzValue]="null" nzLabel="Non défini"></nz-option>
+                <nz-option [nzValue]="true" nzLabel="OUI"></nz-option>
+                <nz-option [nzValue]="false" nzLabel="NON"></nz-option>
+              </nz-select>
+            </div>
+          </div>
+          <div nz-col [nzSpan]="12" [hidden]="false">
+            <div class="input-div">
+              <nz-form-label style="flex: 1; text-align: left; font-size: 16px; color: #000000A1">Hl7</nz-form-label>
+              <nz-form-control style="flex: 2">
+                <input nz-input placeholder="Hl7" [formControlName]="'hl7'" [attr.id]="'hl7'" />
+              </nz-form-control>
+            </div>
+          </div>
+        </div>
+      </form>
+      <div class="search-form-footer">
+        <button nz-button nzType="default" (click)="onFormReset()">Réinitialiser</button>
+        <button nz-button nzType="default" (click)="onFormSubmit()">Rechercher</button>
+      </div>
+    </nz-collapse-panel>
+    <ng-template #collapsePanelHeader>
+      <div class="search-form-header">Critères de recherche</div>
+    </ng-template>
+  </nz-collapse>
+
+
+
+  <nz-card style="width:100%;" [nzTitle]=listCardTitle>
+    <ng-template #listCardTitle>
+      <button nz-button nzType="primary" class="btn btn-purple" routerLink="/referentiel/categories/ajouter">
+        <fa-icon [icon]="faPlus"></fa-icon> Ajouter
+      </button>
+    </ng-template>
+
+    <app-list [listOfData]="listOfData" (listIsLoadingEvent)="onListLoading($event)"
+      *ngIf="!isListLoading; else loadingList"></app-list>
+
+    <ng-template #loadingList>
+      <div class="loading-container">
+        <h4>La liste est en cours de chargement</h4>
+        <div class="loader"></div>
+      </div>
+    </ng-template>
+
+  </nz-card>
+</nz-layout>

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { SearchRequestBuilderService } from './../../../services/search-request-builder.service';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CategorieService } from '../../../services/categorie.service';
 import { Categorie } from '../../../models/categories.model';
 import { faTrash,faPenToSquare } from '@fortawesome/free-solid-svg-icons'
@@ -13,15 +14,24 @@ import { Router } from '@angular/router';
 export class ListComponent {
   faTrash=faTrash;
   faPenToSquare=faPenToSquare;
-  constructor(private categorieService:CategorieService,private router :Router){}
+  constructor(private categorieService:CategorieService, private router :Router){}
 
- 
+
   checked = false;
   indeterminate = false;
   listOfCurrentPageData: readonly Categorie[] = [];
+  @Input()
   listOfData: readonly Categorie[] = [];
   setOfCheckedId = new Set<string>();
-  
+  @Output()
+  listIsLoadingEvent: EventEmitter<boolean> = new EventEmitter();
+
+  set isListLoading(val: boolean) {
+    console.log("Emiting the isListLoading event with value:", val);
+
+    this.listIsLoadingEvent.emit(this.isListLoading);
+  }
+
   updateCheckedSet(id: string, checked: boolean): void {
     if (checked) {
       this.setOfCheckedId.add(id);
@@ -49,27 +59,25 @@ export class ListComponent {
   refreshCheckedStatus(): void {
     this.checked = this.listOfCurrentPageData.every(item => this.setOfCheckedId.has(item.id));
     this.indeterminate = this.listOfCurrentPageData.some(item => this.setOfCheckedId.has(item.id)) && !this.checked;
-    console.log(this.setOfCheckedId);
-
-    
   }
-
-  ngOnInit(): void {
-     this.GetCategoriesList();
-  }
- 
 
  GetCategoriesList(){
-  this.categorieService.GetCategorie().subscribe({
- 
+  this.isListLoading = true;
+  this.categorieService.getBySpecifications().subscribe({
+
    next:(res)=>{
-     console.log(res);
-     this.listOfData=res
+     this.listOfData = res.content
+     console.log(this.isListLoading);
    },
+
    error:(err)=>{
      console.log(err);
+   },
+   complete: () => {
+
+    this.isListLoading = false;
+
    }
-   
   })
  }
 
@@ -103,7 +111,7 @@ export class ListComponent {
       Swal.fire('Annulation', 'Le categorie n\'a pas supprimer :)', 'error');
     }
   });
- 
+
 }
 
 

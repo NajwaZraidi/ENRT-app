@@ -31,6 +31,7 @@ export class CategoriesComponent implements OnInit{
       hl7: ''
     });
   }
+
   ngOnInit(): void {
     this.onFormReset();
   }

@@ -1,0 +1,12 @@
+{
+  "routes": [
+    "/",
+    "/admission",
+    "/referentiel",
+    "/referentiel/categories",
+    "/referentiel/categories/ajouter",
+    "/referentiel/categories/consulter",
+    "/referentiel/categories/edit",
+    "/referentiel/categories/list"
+  ]
+}

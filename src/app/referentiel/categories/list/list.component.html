@@ -46,6 +46,14 @@
 nzShowSizeChanger
 [nzData]="listOfData"
 (nzCurrentPageDataChange)="onCurrentPageDataChange($event)"
+[nzPageSizeOptions]="[10,25,50,100]" 
+[nzFrontPagination]="false"
+[nzTotal]="totalElts"
+[nzPageSize]="pageSize"
+ (nzPageIndexChange)="onPageIndexChange($event)"
+ (nzPageSizeChange)="onPageSizeChange($event)"
+ [nzLoading]="isListLoading"
+ [nzPageIndex]="index"
 >
 <thead>
   <tr>

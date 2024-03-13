@@ -154,4 +154,19 @@ search(){
     }
   });
 }
+
+onPageIndexChange(pageN:number){
+  this.pageN=pageN;
+  console.log("onPageIndexChange got executed");
+  
+  this.onPage();    
+  
+}
+
+
+onPageSizeChange(pageSize:number){
+  console.log("onPageSizeChange got executed");
+  this.pageSize=pageSize;
+  this.onPage();
+}
 }

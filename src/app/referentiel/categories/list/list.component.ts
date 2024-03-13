@@ -20,6 +20,10 @@ export class ListComponent {
   faRotateLeft=faRotateLeft;
   faPlus=faPlus;
   isListLoading?:boolean;
+  pageSize: number=10;
+  pageN:number=1;
+  index:number=1;
+  totalElts:number=1;
   constructor(private categorieService:CategorieService,private router :Router,private formBuilder: FormBuilder,private searchRequestBuilder:SearchRequestBuilderService){
     this.formulaire = this.formBuilder.group({
       code: ['',Validators.required],
@@ -158,8 +162,7 @@ search(){
 onPageIndexChange(pageN:number){
   this.pageN=pageN;
   console.log("onPageIndexChange got executed");
-  
-  this.onPage();    
+  this.search()  
   
 }
 
@@ -167,6 +170,6 @@ onPageIndexChange(pageN:number){
 onPageSizeChange(pageSize:number){
   console.log("onPageSizeChange got executed");
   this.pageSize=pageSize;
-  this.onPage();
+  this.search()
 }
 }

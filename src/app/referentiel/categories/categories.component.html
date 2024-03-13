@@ -83,15 +83,19 @@
       </button>
     </ng-template>
 
-    <app-list [listOfData]="listOfData" (listIsLoadingEvent)="onListLoading($event)"
-      *ngIf="!isListLoading; else loadingList"></app-list>
+    <!-- <app-list [listOfData]="listOfData" (listIsLoadingEvent)="onListLoading($event)"
+      ></app-list> -->
+      <app-list [listOfData]="listOfData" [formValues]="formulaire.value" [isListLoading]="isListLoading" [totalElts]="totalElts"
 
-    <ng-template #loadingList>
+      [index]="index" ></app-list>
+
+    <!-- <ng-template #loadingList>
       <div class="loading-container">
+        *ngIf="!isListLoading; else loadingList"
         <h4>La liste est en cours de chargement</h4>
         <div class="loader"></div>
       </div>
-    </ng-template>
+    </ng-template> -->
 
   </nz-card>
 </nz-layout>

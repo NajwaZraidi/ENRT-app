@@ -5,18 +5,31 @@ import { Categorie } from '../../../models/categories.model';
 import { faTrash,faPenToSquare } from '@fortawesome/free-solid-svg-icons'
 import Swal from "sweetalert2";
 import { Router } from '@angular/router';
+import { log } from 'console';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
   styleUrl: './list.component.css'
 })
-export class ListComponent {
+export class ListComponent implements OnInit {
   faTrash=faTrash;
   faPenToSquare=faPenToSquare;
-  constructor(private categorieService:CategorieService, private router :Router){}
+  
+  constructor(private categorieService:CategorieService, private router :Router,private searchRequestBuilder:SearchRequestBuilderService ){}
+  ngOnInit(): void {
+    this.test = 0
+  }
+  pageSize: number=10;
+  pageN:number=1;
 
-
+  @Input()
+  index:number=1;
+  @Input()
+  totalElts:number=1;
+  @Input()
+  formValues: {} = {};
   checked = false;
   indeterminate = false;
   listOfCurrentPageData: readonly Categorie[] = [];
@@ -25,12 +38,20 @@ export class ListComponent {
   setOfCheckedId = new Set<string>();
   @Output()
   listIsLoadingEvent: EventEmitter<boolean> = new EventEmitter();
+  @Input()
+  isListLoading?: boolean;
 
-  set isListLoading(val: boolean) {
-    console.log("Emiting the isListLoading event with value:", val);
+  // set isListLoading(val: boolean) {
+  //   console.log("Emiting the isListLoading event with value:", val);
 
-    this.listIsLoadingEvent.emit(this.isListLoading);
-  }
+  //   this.listIsLoadingEvent.emit(this.isListLoading);
+  // }
+ 
+  // set sizePage(val: number ) {
+    
+  //   console.log(this.sizePage);
+    
+  // }
 
   updateCheckedSet(id: string, checked: boolean): void {
     if (checked) {
@@ -119,4 +140,47 @@ EditCategorie(id:string){
   console.log("data ===>>> "+id)
   this.router.navigateByUrl("/referentiel/categories/consulter?id="+id)
 }
+
+onPage(): void {
+  this.isListLoading = true;
+  console.log('Nouvelle taille de page sélectionnée : ', this.pageSize);
+  // console.log(this.pageN);
+  let searchRequest = this.searchRequestBuilder.getSearchRequest(this.formValues,{
+    pageNo: this.pageN - 1,
+    pageSize: this.pageSize
+  });
+
+  this.categorieService.getBySpecifications(searchRequest).subscribe({
+    next: data => {
+      this.listOfData = data.content
+      this.totalElts= data.totalElements
+      console.log(this.listOfData)
+      
+      // console.log("total " + this.totalElts);
+      
+    },
+    complete: () => {
+      this.isListLoading = false;
+    }
+  });
+}
+onPageIndexChange(pageN:number){
+  this.pageN=pageN;
+  console.log("onPageIndexChange got executed");
+  
+  this.onPage();    
+  
+}
+
+set test(val: number) {
+  console.log(val);
+  
+}
+
+onPageSizeChange(pageSize:number){
+  console.log("onPageSizeChange got executed");
+  this.pageSize=pageSize;
+  this.onPage();
+}
+
 }

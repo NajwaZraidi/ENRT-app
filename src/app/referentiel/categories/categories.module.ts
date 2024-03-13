@@ -17,7 +17,7 @@ import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzCollapseModule } from 'ng-zorro-antd/collapse';
 import { NzSelectModule } from 'ng-zorro-antd/select';
-
+import { NzPaginationModule } from 'ng-zorro-antd/pagination'
 @NgModule({
   declarations: [
     CategoriesComponent,
@@ -39,7 +39,8 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
     NzTableModule,
     NzGridModule,
     NzCollapseModule,
-    NzSelectModule
+    NzSelectModule,
+    NzPaginationModule
   ]
 })
 export class CategoriesModule { }

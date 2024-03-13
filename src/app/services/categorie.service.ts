@@ -21,6 +21,9 @@ export class CategorieService {
   }
 
   getBySpecifications(searchRequest: SearchRequest = this.searchRequestBuilder.getSearchRequest()): Observable<any> {
+    console.log(searchRequest);
+    console.log("test");
+    
     return this.http.post("http://132.145.60.229:8088/categorie-document/specifications", searchRequest)
   }
 

@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CategorieService } from '../../../services/categorie.service';
 import { Categorie } from '../../../models/categories.model';
-import { faTrash,faPenToSquare } from '@fortawesome/free-solid-svg-icons'
+import { faTrash,faPenToSquare,faSearch,faRotateLeft,faPlus } from '@fortawesome/free-solid-svg-icons'
 import Swal from "sweetalert2";
 import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { SearchRequestBuilderService } from '../../../services/search-request-builder.service';
 
 @Component({
   selector: 'app-list',
@@ -11,9 +13,23 @@ import { Router } from '@angular/router';
   styleUrl: './list.component.css'
 })
 export class ListComponent {
+  formulaire: FormGroup;
+  faSearch=faSearch
   faTrash=faTrash;
   faPenToSquare=faPenToSquare;
-  constructor(private categorieService:CategorieService,private router :Router){}
+  faRotateLeft=faRotateLeft;
+  faPlus=faPlus;
+  isListLoading?:boolean;
+  constructor(private categorieService:CategorieService,private router :Router,private formBuilder: FormBuilder,private searchRequestBuilder:SearchRequestBuilderService){
+    this.formulaire = this.formBuilder.group({
+      code: ['',Validators.required],
+      description: ['',Validators.required],
+      // actif: [false,Validators.required],
+      libelle: ['',Validators.required],
+      ordre: ['',Validators.required],
+      hl7: ['',Validators.required]
+    });
+  }
 
  
   checked = false;
@@ -59,20 +75,25 @@ export class ListComponent {
   }
  
 
- GetCategoriesList(){
-  this.categorieService.GetCategorie().subscribe({
- 
-   next:(res)=>{
-     console.log(res);
-     this.listOfData=res
-   },
-   error:(err)=>{
-     console.log(err);
+  GetCategoriesList(){
+    this.isListLoading = true;
+    this.categorieService.getBySpecifications().subscribe({
+  
+     next:(res)=>{
+       this.listOfData = res.content
+       console.log(this.isListLoading);
+     },
+  
+     error:(err)=>{
+       console.log(err);
+     },
+     complete: () => {
+  
+      this.isListLoading = false;
+  
+     }
+    })
    }
-   
-  })
- }
-
 
   DeleteCategorie(){
   console.log(this.setOfCheckedId)
@@ -110,5 +131,27 @@ export class ListComponent {
 EditCategorie(id:string){
   console.log("data ===>>> "+id)
   this.router.navigateByUrl("/referentiel/categories/consulter?id="+id)
+}
+
+onFormReset(){
+  this.formulaire.reset();
+  this.GetCategoriesList();
+}
+
+search(){
+  let searchRequest = this.searchRequestBuilder.getSearchRequest(this.formulaire.value);
+  console.log(searchRequest)
+  console.log("--------------------");
+  
+  this.isListLoading = true;
+  this.categorieService.getBySpecifications(searchRequest).subscribe({
+    next: data => {
+      this.listOfData = data.content
+      console.log(searchRequest)
+    },
+    complete: () => {
+      this.isListLoading = false;
+    }
+  });
 }
 }

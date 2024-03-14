@@ -24,7 +24,7 @@ export class CategoriesComponent implements OnInit{
   pageN: number=1;
   pageSize: number=10;
   totalElts: number=20;
-  index:number=1;
+  indexCategorie:number=1;
   constructor(private formBuilder: FormBuilder, private categorieService: CategorieService, private searchRequestBuilder: SearchRequestBuilderService) {
     this.formulaire = this.formBuilder.group({
       code: '',
@@ -46,20 +46,21 @@ export class CategoriesComponent implements OnInit{
   }
 
   onFormSubmit(){
+   
     let searchRequest = this.searchRequestBuilder.getSearchRequest(this.formulaire.value,{
       pageNo: this.pageN - 1,
       pageSize: this.pageSize
     });
-
+    
     this.isListLoading = true;
-    this.index=1
     this.categorieService.getBySpecifications(searchRequest).subscribe({
       next: data => {
         this.listOfData = data.content
         this.totalElts=data.totalElements
+        this.indexCategorie=2
       },
       complete: () => {
-
+        console.log(this.indexCategorie)
         this.isListLoading = false;
       }
     });

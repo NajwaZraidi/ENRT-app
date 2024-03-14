@@ -1,5 +1,5 @@
 import { SearchRequestBuilderService } from './../../../services/search-request-builder.service';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { CategorieService } from '../../../services/categorie.service';
 import { Categorie } from '../../../models/categories.model';
 import { faTrash,faPenToSquare } from '@fortawesome/free-solid-svg-icons'
@@ -13,11 +13,20 @@ import { FormGroup } from '@angular/forms';
   templateUrl: './list.component.html',
   styleUrl: './list.component.css'
 })
-export class ListComponent implements OnInit {
+export class ListComponent implements OnInit,OnChanges {
+resetIndex() {
+ this.indexx = 1
+}
+consoleIndex() {
+  console.log(this.indexx )
+ }
   faTrash=faTrash;
   faPenToSquare=faPenToSquare;
   
   constructor(private categorieService:CategorieService, private router :Router,private searchRequestBuilder:SearchRequestBuilderService ){}
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes)
+  }
   ngOnInit(): void {
     this.test = 0
   }
@@ -25,7 +34,7 @@ export class ListComponent implements OnInit {
   pageN:number=1;
 
   @Input()
-  index:number=1;
+  indexCategorie:number=0;
   @Input()
   totalElts:number=1;
   @Input()
@@ -52,7 +61,7 @@ export class ListComponent implements OnInit {
   //   console.log(this.sizePage);
     
   // }
-
+   indexx = 0 ;
   updateCheckedSet(id: string, checked: boolean): void {
     if (checked) {
       this.setOfCheckedId.add(id);
@@ -168,8 +177,8 @@ onPageIndexChange(pageN:number){
   this.pageN=pageN;
   console.log("onPageIndexChange got executed");
   
-  this.onPage();    
-  
+  this.onPage();  
+
 }
 
 set test(val: number) {

@@ -78,16 +78,15 @@
 
   <nz-card style="width:100%;" [nzTitle]=listCardTitle>
     <ng-template #listCardTitle>
-      <button nz-button nzType="primary" class="btn btn-purple" routerLink="/referentiel/categories/ajouter">
+      <button nz-button nzType="primary" class="btn btn-purple" routerLink="/referentiel/categories/list">
         <fa-icon [icon]="faPlus"></fa-icon> Ajouter
       </button>
     </ng-template>
 
     <!-- <app-list [listOfData]="listOfData" (listIsLoadingEvent)="onListLoading($event)"
       ></app-list> -->
-      <app-list [listOfData]="listOfData" [formValues]="formulaire.value" [isListLoading]="isListLoading" [totalElts]="totalElts"
-
-      [index]="index" ></app-list>
+      <app-list [listOfData]="listOfData" [indexCategorie]="indexCategorie" [formValues]="formulaire.value" [isListLoading]="isListLoading" [totalElts]="totalElts"
+      ></app-list>
 
     <!-- <ng-template #loadingList>
       <div class="loading-container">

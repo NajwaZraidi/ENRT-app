@@ -1,4 +1,4 @@
-<h2>{{index}}</h2>
+<h2>{{indexCategorie}}</h2>
 <nz-table #rowSelectionTable nzShowSizeChanger [nzData]="listOfData"
   (nzCurrentPageDataChange)="onCurrentPageDataChange($event)"
   [nzPageSizeOptions]="[10,25,50,100]" 
@@ -8,7 +8,7 @@
    (nzPageIndexChange)="onPageIndexChange($event)"
    (nzPageSizeChange)="onPageSizeChange($event)"
    [nzLoading]="isListLoading"
-   [nzPageIndex]="index"
+   [(nzPageIndex)]="indexCategorie"
   
   >
   <thead>
@@ -48,3 +48,6 @@
     </tr>
   </tbody>
 </nz-table>
+ 
+  <button (click)="resetIndex()"> test index </button>
+  <button (click)="consoleIndex()"> console index </button>

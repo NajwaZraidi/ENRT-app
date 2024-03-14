@@ -16,6 +16,7 @@ import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzCollapseModule } from 'ng-zorro-antd/collapse';
+import { SearchComponent } from './list/search/search.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { NzCollapseModule } from 'ng-zorro-antd/collapse';
     EditComponent,
     ViewComponent,
     ListComponent,
+    SearchComponent,
   ],
   imports: [
     CommonModule,

@@ -51,7 +51,7 @@ export class ListComponent {
   }
 
   onItemChecked(id: string, checked: boolean): void {
-    console.log('id--->',id)
+    // console.log('id--->',id)
     this.updateCheckedSet(id, checked);
     this.refreshCheckedStatus();
   }
@@ -69,7 +69,7 @@ export class ListComponent {
   refreshCheckedStatus(): void {
     this.checked = this.listOfCurrentPageData.every(item => this.setOfCheckedId.has(item.id));
     this.indeterminate = this.listOfCurrentPageData.some(item => this.setOfCheckedId.has(item.id)) && !this.checked;
-    console.log(this.setOfCheckedId);
+    // console.log(this.setOfCheckedId);
 
     
   }
@@ -85,7 +85,7 @@ export class ListComponent {
   
      next:(res)=>{
        this.listOfData = res.content
-       console.log(this.isListLoading);
+      //  console.log(this.isListLoading);
      },
   
      error:(err)=>{
@@ -100,7 +100,7 @@ export class ListComponent {
    }
 
   DeleteCategorie(){
-  console.log(this.setOfCheckedId)
+  // console.log(this.setOfCheckedId)
   // this.refreshCheckedStatus();
      Swal.fire({
     title: 'Êtes-vous sûr de vouloir supprimer ?' ,
@@ -133,7 +133,7 @@ export class ListComponent {
 
 
 EditCategorie(id:string){
-  console.log("data ===>>> "+id)
+  // console.log("data ===>>> "+id)
   this.router.navigateByUrl("/referentiel/categories/consulter?id="+id)
 }
 
@@ -143,7 +143,10 @@ onFormReset(){
 }
 
 search(){
-  let searchRequest = this.searchRequestBuilder.getSearchRequest(this.formulaire.value);
+  let searchRequest = this.searchRequestBuilder.getSearchRequest(this.formulaire.value,{
+    pageNo: this.pageN - 1,
+    pageSize: this.pageSize
+  });
   console.log(searchRequest)
   console.log("--------------------");
   
@@ -161,14 +164,14 @@ search(){
 
 onPageIndexChange(pageN:number){
   this.pageN=pageN;
-  console.log("onPageIndexChange got executed");
+  // console.log("onPageIndexChange got executed");
   this.search()  
   
 }
 
 
 onPageSizeChange(pageSize:number){
-  console.log("onPageSizeChange got executed");
+  // console.log("onPageSizeChange got executed");
   this.pageSize=pageSize;
   this.search()
 }

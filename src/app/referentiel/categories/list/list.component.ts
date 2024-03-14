@@ -13,6 +13,10 @@ import { SearchRequestBuilderService } from '../../../services/search-request-bu
   styleUrl: './list.component.css'
 })
 export class ListComponent {
+  handleDataRecieved(data: Categorie[]) {
+    this.listOfData=data;
+    this.index=1
+  }
   formulaire: FormGroup;
   faSearch=faSearch
   faTrash=faTrash;
@@ -75,30 +79,11 @@ export class ListComponent {
   }
 
   ngOnInit(): void {
-     this.GetCategoriesList();
+     this.search();
   }
  
 
-  GetCategoriesList(){
-    this.isListLoading = true;
-    this.categorieService.getBySpecifications().subscribe({
-  
-     next:(res)=>{
-       this.listOfData = res.content
-      //  console.log(this.isListLoading);
-     },
-  
-     error:(err)=>{
-       console.log(err);
-     },
-     complete: () => {
-  
-      this.isListLoading = false;
-  
-     }
-    })
-   }
-
+ 
   DeleteCategorie(){
   // console.log(this.setOfCheckedId)
   // this.refreshCheckedStatus();
@@ -116,7 +101,7 @@ export class ListComponent {
         .subscribe({
           next:(res)=>{
             Swal.fire("Suppression","Le categorie a supprimer :( ","success")
-            this.GetCategoriesList();
+            this.search();
           },
           error:(err)=>{
             alert("error")
@@ -139,7 +124,7 @@ EditCategorie(id:string){
 
 onFormReset(){
   this.formulaire.reset();
-  this.GetCategoriesList();
+  this.search();
 }
 
 search(){
@@ -154,7 +139,8 @@ search(){
   this.categorieService.getBySpecifications(searchRequest).subscribe({
     next: data => {
       this.listOfData = data.content
-      console.log(searchRequest)
+      console.log(data)
+      this.totalElts=data.totalElements
     },
     complete: () => {
       this.isListLoading = false;

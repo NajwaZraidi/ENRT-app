@@ -1,5 +1,5 @@
 <!-- Search  -->
-<app-search></app-search>
+<app-search (DataRecieved)="handleDataRecieved($event)"></app-search>
 <!-- Table  -->
 <nz-table
 #rowSelectionTable
@@ -12,7 +12,7 @@ nzShowSizeChanger
  (nzPageIndexChange)="onPageIndexChange($event)"
  (nzPageSizeChange)="onPageSizeChange($event)"
  [nzLoading]="isListLoading"
- [nzPageIndex]="index"
+ [(nzPageIndex)]="index"
 >
 <thead>
   <tr>

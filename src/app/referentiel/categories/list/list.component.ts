@@ -15,26 +15,35 @@ import { FormGroup } from '@angular/forms';
 })
 export class ListComponent implements OnInit,OnChanges {
 resetIndex() {
- this.indexx = 1
+ this.indexCategorie = 1
+ 
+ this.categorieService.setTest(2)
+ 
+
 }
 consoleIndex() {
-  console.log(this.indexx )
+  console.log(this.indexCategorie)
  }
   faTrash=faTrash;
   faPenToSquare=faPenToSquare;
-  
-  constructor(private categorieService:CategorieService, private router :Router,private searchRequestBuilder:SearchRequestBuilderService ){}
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes)
-  }
+  constructor(public categorieService:CategorieService, private router :Router,private searchRequestBuilder:SearchRequestBuilderService ){}
   ngOnInit(): void {
-    this.test = 0
+  
+    this.GetCategoriesList()
+    
+   }
+  ngOnChanges(changes: SimpleChanges): void {
+ console.log(changes)
+//  console.log("categorieIndex "+this.indexCategorie)   
+ 
+
   }
+
   pageSize: number=10;
   pageN:number=1;
 
   @Input()
-  indexCategorie:number=0;
+  indexCategorie:number=1;
   @Input()
   totalElts:number=1;
   @Input()
@@ -50,6 +59,9 @@ consoleIndex() {
   @Input()
   isListLoading?: boolean;
 
+  // @Input()
+  test?:string;
+
   // set isListLoading(val: boolean) {
   //   console.log("Emiting the isListLoading event with value:", val);
 
@@ -61,7 +73,6 @@ consoleIndex() {
   //   console.log(this.sizePage);
     
   // }
-   indexx = 0 ;
   updateCheckedSet(id: string, checked: boolean): void {
     if (checked) {
       this.setOfCheckedId.add(id);
@@ -181,10 +192,6 @@ onPageIndexChange(pageN:number){
 
 }
 
-set test(val: number) {
-  console.log(val);
-  
-}
 
 onPageSizeChange(pageSize:number){
   console.log("onPageSizeChange got executed");

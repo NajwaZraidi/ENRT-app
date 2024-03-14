@@ -5,11 +5,10 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Categorie } from '../models/categories.model';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class CategorieService {
 
+  test:number=1;
   constructor(private http: HttpClient, private searchRequestBuilder: SearchRequestBuilderService) {}
 
   AjouterCategorie(data: Categorie): Observable<any>{
@@ -37,5 +36,12 @@ export class CategorieService {
 
   EditCategorie(id :string,data:Categorie){
     return this.http.put<Categorie>('http://132.145.60.229:8088/categorie-document/update/'+id,data);
+  }
+ 
+  getTest(){
+    return this.test;
+  }
+  setTest(tst:number){
+    this.test=tst;
   }
 }

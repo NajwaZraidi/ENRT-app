@@ -47,7 +47,7 @@
           <div nz-col [nzSpan]="12" [hidden]="false">
             <div class="input-div">
               <nz-form-label style="flex: 1; text-align: left; font-size: 16px; color: #000000A1">Actif</nz-form-label>
-              <nz-select style="flex: 2" [formControlName]="'actif'" [attr.id]="'actif'">
+              <nz-select style="flex: 2"  [attr.id]="'actif'">
                 <nz-option [nzValue]="null" nzLabel="Non défini"></nz-option>
                 <nz-option [nzValue]="true" nzLabel="OUI"></nz-option>
                 <nz-option [nzValue]="false" nzLabel="NON"></nz-option>
@@ -85,7 +85,9 @@
 
     <!-- <app-list [listOfData]="listOfData" (listIsLoadingEvent)="onListLoading($event)"
       ></app-list> -->
-      <app-list [listOfData]="listOfData" [indexCategorie]="indexCategorie" [formValues]="formulaire.value" [isListLoading]="isListLoading" [totalElts]="totalElts"
+      <app-list [listOfData]="listOfData" [indexCategorie]="indexCategorie"
+       [formValues]="formulaire.value" [isListLoading]="isListLoading" [totalElts]="totalElts"
+      
       ></app-list>
 
     <!-- <ng-template #loadingList>

@@ -25,18 +25,19 @@ export class CategoriesComponent implements OnInit{
   pageSize: number=10;
   totalElts: number=20;
   indexCategorie:number=1;
+  // test?:string;
   constructor(private formBuilder: FormBuilder, private categorieService: CategorieService, private searchRequestBuilder: SearchRequestBuilderService) {
     this.formulaire = this.formBuilder.group({
       code: '',
       description: '',
-      actif: false,
+      // actif: false,
       libelle: '',
       ordre: '',
       hl7: ''
     });
   }
   ngOnInit(): void {
-    this.onFormReset();
+    // this.onFormReset();
     console.log("test");
     
   }
@@ -45,26 +46,28 @@ export class CategoriesComponent implements OnInit{
     this.isListLoading = isLoading
   }
 
-  onFormSubmit(){
-   
+onFormSubmit(){
+    
+  this.categorieService.setTest(1)
+    
     let searchRequest = this.searchRequestBuilder.getSearchRequest(this.formulaire.value,{
       pageNo: this.pageN - 1,
       pageSize: this.pageSize
     });
-    
+    this.indexCategorie=1
     this.isListLoading = true;
     this.categorieService.getBySpecifications(searchRequest).subscribe({
       next: data => {
+        
         this.listOfData = data.content
         this.totalElts=data.totalElements
-        this.indexCategorie=2
+        
       },
       complete: () => {
-        console.log(this.indexCategorie)
         this.isListLoading = false;
       }
     });
-    
+
   }
 
   onFormReset() {

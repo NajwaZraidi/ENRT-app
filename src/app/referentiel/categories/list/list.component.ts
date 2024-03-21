@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SearchRequestBuilderService } from '../../../services/search-request-builder.service';
+import { log } from 'console';
 
 @Component({
   selector: 'app-list',
@@ -13,11 +14,16 @@ import { SearchRequestBuilderService } from '../../../services/search-request-bu
   styleUrl: './list.component.css'
 })
 export class ListComponent {
+  formValue?:{};
+handleFormRecieved(form: {}) {
+   this.formValue=form;
+   
+}
   handleDataRecieved(data: Categorie[]) {
     this.listOfData=data;
     this.index=1
   }
-  formulaire: FormGroup;
+  
   faSearch=faSearch
   faTrash=faTrash;
   faPenToSquare=faPenToSquare;
@@ -28,15 +34,8 @@ export class ListComponent {
   pageN:number=1;
   index:number=1;
   totalElts:number=1;
-  constructor(private categorieService:CategorieService,private router :Router,private formBuilder: FormBuilder,private searchRequestBuilder:SearchRequestBuilderService){
-    this.formulaire = this.formBuilder.group({
-      code: ['',Validators.required],
-      description: ['',Validators.required],
-      // actif: [false,Validators.required],
-      libelle: ['',Validators.required],
-      ordre: ['',Validators.required],
-      hl7: ['',Validators.required]
-    });
+  constructor(private categorieService:CategorieService,private router :Router,private searchRequestBuilder:SearchRequestBuilderService){
+
   }
 
  
@@ -122,24 +121,23 @@ EditCategorie(id:string){
   this.router.navigateByUrl("/referentiel/categories/consulter?id="+id)
 }
 
-onFormReset(){
-  this.formulaire.reset();
-  this.search();
-}
+
 
 search(){
-  let searchRequest = this.searchRequestBuilder.getSearchRequest(this.formulaire.value,{
+  let searchRequest = this.searchRequestBuilder.getSearchRequest(this.formValue,{
     pageNo: this.pageN - 1,
     pageSize: this.pageSize
   });
-  console.log(searchRequest)
-  console.log("--------------------");
+  console.log("----------");
+  console.log(this.formValue);
   
+  console.log("----------");
+  console.log(searchRequest)
+ 
   this.isListLoading = true;
   this.categorieService.getBySpecifications(searchRequest).subscribe({
     next: data => {
       this.listOfData = data.content
-      console.log(data)
       this.totalElts=data.totalElements
     },
     complete: () => {

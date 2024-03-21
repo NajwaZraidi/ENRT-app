@@ -13,6 +13,7 @@ import { SearchRequestBuilderService } from '../../../../services/search-request
 })
 export class SearchComponent {
   formulaire: FormGroup;
+  totalElts?:number;
   faRotateLeft=faRotateLeft;
   faSearch=faSearch;
   faPlus=faPlus;
@@ -22,6 +23,8 @@ export class SearchComponent {
   pageN:number=1;
   @Output()
   DataRecieved:EventEmitter<Array<Categorie>>=new EventEmitter<Array<Categorie>>();
+  @Output()
+  FormRecieved:EventEmitter<{}>=new EventEmitter<{}>();
 
   constructor(private formBuilder: FormBuilder,private categorieService:CategorieService,private searchRequestBuilder:SearchRequestBuilderService){
     this.formulaire = this.formBuilder.group({
@@ -39,6 +42,7 @@ export class SearchComponent {
 
   onFormReset(){
     this.formulaire.reset();
+    this.search()
   }
 
   search(){
@@ -53,11 +57,13 @@ export class SearchComponent {
     this.categorieService.getBySpecifications(searchRequest).subscribe({
       next: data => {
         this.listOfData = data.content
+        this.totalElts=data.totalElements
         console.log(searchRequest)
       },
       complete: () => {
         this.isListLoading = false;
         this.DataRecieved.emit(this.listOfData);
+        this.FormRecieved.emit(this.formulaire.value)
       }
     });
   }
